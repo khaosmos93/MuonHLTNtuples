@@ -446,7 +446,11 @@ void MuonNtuples::fillHlt(const edm::Handle<edm::TriggerResults>   & triggerResu
            pathName.find ("HLT_TkMu5"  ) !=std::string::npos ||
            pathName.find ("HLT_IsoTkMu") !=std::string::npos ||
            pathName.find ("HLT_Mu17"   ) !=std::string::npos ||
-           pathName.find ("HLT_Mu8_T"  ) !=std::string::npos 
+           pathName.find ("HLT_Mu8_T"  ) !=std::string::npos ||
+           pathName.find ("HLT_L1SingleMu"       ) !=std::string::npos ||
+           pathName.find ("HLT_L2Mu"             ) !=std::string::npos ||
+           pathName.find ("HLT_PFMETTypeOne"  ) !=std::string::npos
+      
       ){
         if (isTag) event_.hltTag.triggers.push_back(pathName);
         else       event_.hlt   .triggers.push_back(pathName);
@@ -461,7 +465,8 @@ void MuonNtuples::fillHlt(const edm::Handle<edm::TriggerResults>   & triggerResu
     std::string filterTag = triggerEvent->filterTag(iFilter).encode();
 
     if ( ( filterTag.find ("sMu22"     ) !=std::string::npos ||
-           filterTag.find ("sMu25"     ) !=std::string::npos 
+           filterTag.find ("sMu25"     ) !=std::string::npos ||
+           filterTag.find ("PFMETTypeOne"     ) !=std::string::npos
 //            filterTag.find ("DoubleMu"  ) !=std::string::npos ||
 //            filterTag.find ("DiMuonGlb" ) !=std::string::npos
            ) && 
