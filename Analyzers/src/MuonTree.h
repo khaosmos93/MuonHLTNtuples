@@ -163,7 +163,7 @@ public:
 
   Int_t   runNumber;             
   Int_t   luminosityBlockNumber; 
-  Int_t   eventNumber;           
+  unsigned long long   eventNumber;           
 
   Int_t   nVtx;                    
   Float_t primaryVertex[3];        
