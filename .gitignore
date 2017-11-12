@@ -1,0 +1,15 @@
+
+Analyzers/test/Old/
+Analyzers/test/Local/
+Analyzers/test/Plot/outputs/
+Analyzers/test/Crab/crab_*/
+
+*.log
+*.pyc
+*.root
+
+
+
+
+#Mac OS
+.DS_Store

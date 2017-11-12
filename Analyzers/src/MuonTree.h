@@ -10,18 +10,18 @@
 
 class GenParticleCand {
 public:
-  Int_t   pdgId; 
-  Int_t   status; 
-  Float_t energy; 
-  Float_t pt; 
-  Float_t eta; 
-  Float_t phi; 
-  std::vector<Int_t>  pdgMother; 
-  std::vector<Int_t>  pdgRealMother; 
+  Int_t   pdgId;
+  Int_t   status;
+  Float_t energy;
+  Float_t pt;
+  Float_t eta;
+  Float_t phi;
+  std::vector<Int_t>  pdgMother;
+  std::vector<Int_t>  pdgRealMother;
 
   GenParticleCand(){};
   virtual ~GenParticleCand(){};
-  
+
   ClassDef(GenParticleCand,1)
 };
 
@@ -31,10 +31,10 @@ public:
 class MuonCand {
 public:
 
-  Float_t pt;  
-  Float_t eta; 
-  Float_t phi; 
-  Int_t   charge;    
+  Float_t pt;
+  Float_t eta;
+  Float_t phi;
+  Int_t   charge;
 
   Int_t   isGlobal;
   Int_t   isTracker;
@@ -42,7 +42,7 @@ public:
   Int_t   isLoose;
   Int_t   isMedium;
   Int_t   isTight;
-  
+
   Float_t chargedDep_dR03;
   Float_t neutralDep_dR03;
   Float_t photonDep_dR03;
@@ -71,12 +71,12 @@ public:
 class HLTMuonCand {
 public:
 
-  Float_t pt;           
-  Float_t eta;          
-  Float_t phi;          
+  Float_t pt;
+  Float_t eta;
+  Float_t phi;
   Float_t trkpt;         // pt of the track of the hlt muon [GeV]
   Int_t   charge;         // pt of the track of the hlt muon [GeV]
-  
+
   Float_t ecalDep;
   Float_t hcalDep;
   Float_t trkDep;
@@ -97,12 +97,12 @@ public:
 class L1MuonCand {
 public:
 
-  Float_t pt;           
-  Float_t eta;          
-  Float_t phi;          
-  Int_t   charge;      
-  Int_t   quality;      
-  
+  Float_t pt;
+  Float_t eta;
+  Float_t phi;
+  Int_t   charge;
+  Int_t   quality;
+
   L1MuonCand(){};
   virtual ~L1MuonCand(){};
 
@@ -116,10 +116,11 @@ class HLTObjCand {
 public:
 
   std::string filterTag; // name of filter passed by the object
+  Int_t   id;
   Float_t pt;            // pt of the object passing the filter [GeV]
   Float_t eta;           // eta of the object passing the filter
   Float_t phi;           // phi of the object passing the filter
-  
+
   HLTObjCand(){};
   virtual ~HLTObjCand(){};
 
@@ -133,8 +134,8 @@ public:
 
 class HLTInfo {
 public:
-  std::vector<std::string>  triggers;  
-  std::vector<HLTObjCand>   objects;   
+  std::vector<std::string>  triggers;
+  std::vector<HLTObjCand>   objects;
   double                    rho;
 
   HLTInfo(){};
@@ -147,8 +148,8 @@ public:
 
   bool find( const std::string & path ) {
 	for ( std::vector<std::string>::const_iterator it = triggers.begin(); it != triggers.end(); ++it ) {
-      if ( it-> compare(path) == 0) return true;
-//       if ( it->find ( path ) != std::string::npos ) return true;
+      //if ( it-> compare(path) == 0) return true;
+       if ( it->find ( path ) != std::string::npos ) return true;
 	}
 	return false;
   }
@@ -161,28 +162,28 @@ public:
 class MuonEvent {
 public:
 
-  Int_t   runNumber;             
-  Int_t   luminosityBlockNumber; 
-  unsigned long long   eventNumber;           
+  Int_t   runNumber;
+  Int_t   luminosityBlockNumber;
+  unsigned long long   eventNumber;
 
-  Int_t   nVtx;                    
-  Float_t primaryVertex[3];        
-  Float_t cov_primaryVertex[3][3]; 
+  Int_t   nVtx;
+  Float_t primaryVertex[3];
+  Float_t cov_primaryVertex[3][3];
 
-  Float_t trueNI;   
-  Float_t rho; 
-  
+  Float_t trueNI;
+  Float_t rho;
+
   Float_t bxId;
-  Float_t instLumi; 
+  Float_t instLumi;
 
-  std::vector <GenParticleCand> genParticles; 
-  std::vector <MuonCand>        muons;         
-  std::vector <HLTMuonCand>     tkmuons;      
-  std::vector <HLTMuonCand>     hltmuons;      
-  std::vector <HLTMuonCand>     L2muons;      
-  std::vector <L1MuonCand>      L1muons;      
-  HLTInfo                       hlt;           
-  HLTInfo                       hltTag;            
+  std::vector <GenParticleCand> genParticles;
+  std::vector <MuonCand>        muons;
+  std::vector <HLTMuonCand>     tkmuons;
+  std::vector <HLTMuonCand>     hltmuons;
+  std::vector <HLTMuonCand>     L2muons;
+  std::vector <L1MuonCand>      L1muons;
+  HLTInfo                       hlt;
+  HLTInfo                       hltTag;
 
   MuonEvent(){};
   virtual ~MuonEvent(){};

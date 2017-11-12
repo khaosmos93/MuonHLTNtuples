@@ -1,0 +1,31 @@
+#!/bin/bash
+
+rootbq 'ReadNtuples_Rate_v2.C("vOld","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/vOld_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("vOld","HLT_Mu50_v",false)' >&outputs/Rate_v2/vOld_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v1p1","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v1p1_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v1p1","HLT_Mu50_v",false)' >&outputs/Rate_v2/v1p1_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v1p2","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v1p2_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v1p2","HLT_Mu50_v",false)' >&outputs/Rate_v2/v1p2_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v2p0","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v2p0_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v2p0","HLT_Mu50_v",false)' >&outputs/Rate_v2/v2p0_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v2p1","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v2p1_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v2p1","HLT_Mu50_v",false)' >&outputs/Rate_v2/v2p1_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v2p2","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v2p2_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v2p2","HLT_Mu50_v",false)' >&outputs/Rate_v2/v2p2_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v3p0","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v3p0_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v3p0","HLT_Mu50_v",false)' >&outputs/Rate_v2/v3p0_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v3p1","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v3p1_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v3p1","HLT_Mu50_v",false)' >&outputs/Rate_v2/v3p1_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v3p2","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v3p2_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v3p2","HLT_Mu50_v",false)' >&outputs/Rate_v2/v3p2_Mu50.txt&
+
+rootbq 'ReadNtuples_Rate_v2.C("v4p0","HLT_IsoMu27_v",false)' >&outputs/Rate_v2/v4p0_IsoMu27.txt&
+rootbq 'ReadNtuples_Rate_v2.C("v4p0","HLT_Mu50_v",false)' >&outputs/Rate_v2/v4p0_Mu50.txt&
