@@ -13,7 +13,7 @@ process.source = cms.Source("PoolSource",
 )
 
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff")
-GT = '92X_dataRun2_Prompt_v10'
+GT = '80X_dataRun2_Prompt_v14'
 process.GlobalTag.globaltag = GT     ##'92X_dataRun2_Prompt_v5'   #'74X_dataRun2_Prompt_v2'
 
 process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff")
@@ -61,7 +61,7 @@ process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
 
 process.mypath  = cms.Path(process.muonNtuples)
 
-outputName = "muonNtuple_Run2017Fv1_v4p0.root"
+outputName = "muonNtuple_Run2016Hv2.root"
 process.TFileService = cms.Service("TFileService",
                                    fileName = cms.string(outputName),
                                    closeFileFast = cms.untracked.bool(False)

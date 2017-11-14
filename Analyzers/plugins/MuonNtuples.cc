@@ -392,12 +392,13 @@ void MuonNtuples::MonteCarloStudies(const edm::Event& event)
     if(fabs(p.pdgId()) != muId )     continue;
 
     GenParticleCand theGen;
-    theGen.pdgId  = p.pdgId();
-    theGen.pt     = p.pt() ;
-    theGen.eta    = p.eta();
-    theGen.phi    = p.phi();
-    theGen.energy = p.energy();
-    theGen.status = p.status();
+    theGen.pdgId         = p.pdgId();
+    //theGen.isHardProcess = p.isHardProcess();
+    theGen.pt            = p.pt() ;
+    theGen.eta           = p.eta();
+    theGen.phi           = p.phi();
+    theGen.energy        = p.energy();
+    theGen.status        = p.status();
 
     unsigned int n_moms = p.numberOfMothers();
     if (n_moms == 0 ){

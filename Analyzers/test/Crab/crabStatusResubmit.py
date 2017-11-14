@@ -2,34 +2,31 @@ import sys, os
 if __name__ == '__main__':
 
   dirs = [
-            #('Run2017Bv1_v1p1','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Bv1_v1p1_20171102'),
+            ('Run2017Bv1_v1p1','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Bv1_v1p1_20171113'),
 
-            #('Run2017Bv1_v1p2','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Bv1_v1p2_20171102'),
-            #('Run2017Bv2_v1p2','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Bv2_v1p2_20171102'),
+            ('Run2017Bv1_v1p2','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Bv1_v1p2_20171113'),
+            ('Run2017Bv2_v1p2','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Bv2_v1p2_20171113'),
 
-            #('Run2017Cv1_v2p0','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Cv1_v2p0_20171102'),
-            ##('Run2017Cv2_v2p0','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Cv2_v2p0_20171102'),
+            ('Run2017Cv1_v2p0','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Cv1_v2p0_20171113'),
+            #('Run2017Cv2_v2p0','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Cv2_v2p0_20171113'),
 
-            #('Run2017Cv2_v2p1','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Cv2_v2p1_20171102'),
-            #('Run2017Cv3_v2p1','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Cv3_v2p1_20171102'),
+            ('Run2017Cv2_v2p1','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Cv2_v2p1_20171113'),
+            ('Run2017Cv3_v2p1','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Cv3_v2p1_20171113'),
 
-            #('Run2017Cv3_v2p2','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Cv3_v2p2_20171102'),
+            ('Run2017Cv3_v2p2','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Cv3_v2p2_20171113'),
 
-            #('Run2017Dv1_v3p0','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Dv1_v3p0_20171102'),
+            ('Run2017Dv1_v3p0','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Dv1_v3p0_20171113'),
 
-            #('Run2017Dv1_v3p1','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Dv1_v3p1_20171102'),
-            #('Run2017Ev1_v3p1','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Ev1_v3p1_20171102'),
-            #('Run2017Fv1_v3p1','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v3p1_20171102'),
+            ('Run2017Dv1_v3p1','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Dv1_v3p1_20171113'),
+            ('Run2017Ev1_v3p1','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Ev1_v3p1_20171113'),
+            ('Run2017Fv1_v3p1','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v3p1_20171113'),
 
-            #('Run2017Fv1_v3p2','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v3p2_20171102'),
+            ('Run2017Fv1_v3p2','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v3p2_20171113'),
 
-            #('Run2017Fv1_v4p0','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v4p0_20171102'),
+            ('Run2017Fv1_v4p0','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v4p0_20171113'),
 
-            #('Run2016Hv2','crab_RateStudy2017_v3_SingleMuon_20171102/crab_RateStudy2017_v3_SingleMuon_Run2016Hv2_20171102'),
+            ('Run2016Hv2','crab_RateStudy2017_v3_SingleMuon_20171113/crab_RateStudy2017_v3_SingleMuon_Run2016Hv2_20171113'),
 
-            ('Run2017Cv1_v2p0','crab_RateStudy2017_v3_SingleMuon_20171110/crab_RateStudy2017_v3_SingleMuon_Run2017Cv1_v2p0_20171110'),
-            ('Run2017Fv1_v3p2','crab_RateStudy2017_v3_SingleMuon_20171110/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v3p2_20171110'),
-            ('Run2017Fv1_v4p0','crab_RateStudy2017_v3_SingleMuon_20171110/crab_RateStudy2017_v3_SingleMuon_Run2017Fv1_v4p0_20171110'),
           ]
 
 

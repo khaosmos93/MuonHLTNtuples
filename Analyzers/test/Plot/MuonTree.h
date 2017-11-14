@@ -12,7 +12,6 @@ class GenParticleCand {
 public:
   Int_t   pdgId;
   Int_t   status;
-  //Int_t   isHardProcess;
   Float_t energy;
   Float_t pt;
   Float_t eta;
@@ -117,7 +116,7 @@ class HLTObjCand {
 public:
 
   std::string filterTag; // name of filter passed by the object
-  Int_t   id;
+  //Int_t   id;
   Float_t pt;            // pt of the object passing the filter [GeV]
   Float_t eta;           // eta of the object passing the filter
   Float_t phi;           // phi of the object passing the filter

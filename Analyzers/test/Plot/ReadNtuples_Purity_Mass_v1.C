@@ -14,7 +14,8 @@
 #include <map>
 
 #include "DataFormats/Math/interface/deltaR.h"
-#include "MuonHLTNtuples/Analyzers/src/MuonTree.h"
+//#include "MuonHLTNtuples/Analyzers/src/MuonTree.h"
+#include "MuonTree.h"
 #include "TLorentzVector.h"
 
 #include <ctime>
@@ -132,8 +133,12 @@ void ReadNtuples_Purity_Mass_v1(TString Menu, std::string hltname, bool verbose)
   int nentries = inputchain->GetEntries(); //Fast();
   std::cout << "Number of entries = " << nentries << std::endl;
 
-  //nentries = 10000;
+  Int_t nL3MoreThan2 = 0;
+  Int_t nTnPPair = 0;
+
+  nentries = 10000;
   for (Int_t eventNo=0; eventNo < nentries; eventNo++) {
+    minDR = 0.1;
     if(!verbose) loadBar(eventNo+1, nentries, 100, 100);
     Int_t IgetEvent   = inputchain   -> GetEvent(eventNo);
 
@@ -158,6 +163,8 @@ void ReadNtuples_Purity_Mass_v1(TString Menu, std::string hltname, bool verbose)
     if (verbose) cout<< "\t# L3 muons : " << nL3Muons << endl;
     if (nL3Muons < 2) continue;
 
+    nL3MoreThan2 += 1;
+
     TLorentzVector vec4_i, vec4_j;
     Double_t theMass = -1;   //pair<HLTObjCand, HLTObjCand> thePair;
     HLTObjCand theTag;
@@ -178,6 +185,7 @@ void ReadNtuples_Purity_Mass_v1(TString Menu, std::string hltname, bool verbose)
         for(Int_t iOff=0; iOff<nOffMuons; ++iOff){
           MuonCand OffMu = ev->muons.at(iOff);
           Double_t dR_temp = deltaR(jMu.eta, jMu.phi, OffMu.eta, OffMu.phi);
+          if (verbose) cout << "\t\t\t\tdR_temp = " << dR_temp << endl;
           if (dR_temp < minDR){
             theOffMu = OffMu;
             minDR = dR_temp;
@@ -201,6 +209,8 @@ void ReadNtuples_Purity_Mass_v1(TString Menu, std::string hltname, bool verbose)
       if (verbose) cout<< "\t\tProve       : " << theProbe.pt << "\t" << theProbe.eta << "\t" << theProbe.phi << endl;
       if (verbose) cout<< "\t\tMatched Off : " << theOffMu.pt << "\t" << theOffMu.eta << "\t" << theOffMu.phi << endl;
       if (verbose) cout<< "\t\tTnP Mass    = " << theMass << endl;
+
+      nTnPPair += 1;
 
       // Fill Histo
       h_Mass_OS->Fill(theMass);
@@ -233,7 +243,10 @@ void ReadNtuples_Purity_Mass_v1(TString Menu, std::string hltname, bool verbose)
   }
   outfile           -> Close();
 
-  cout << "\t\t\tFinish!!\n" << std::endl;
+  cout<< "\nnL3MoreThan2 =    " << nL3MoreThan2 << endl;
+  cout<<   "nTnPPair     =    " << nTnPPair << endl;
+
+  cout << "\n\n\t\t\tFinish!!\n" << std::endl;
 
   Double_t TotalRunTime = totaltime.CpuTime();
   cout << "Total RunTime: " << TotalRunTime << " seconds" << endl;
