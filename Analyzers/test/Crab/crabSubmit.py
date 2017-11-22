@@ -22,27 +22,27 @@ DataSample = [
                 ('Run2017Bv1_v1p1', '297050-297556', '/Run2017B-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v4', Golden_JSON_2017),
 
                 ('Run2017Bv1_v1p2', '297557-298677', '/Run2017B-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v4', Golden_JSON_2017),
-                ('Run2017Bv2_v1p2', '298678-299367', '/Run2017B-PromptReco-v2/AOD', '92X_dataRun2_Prompt_v5', Golden_JSON_2017),
+                #('Run2017Bv2_v1p2', '298678-299367', '/Run2017B-PromptReco-v2/AOD', '92X_dataRun2_Prompt_v5', Golden_JSON_2017),
 
-                ('Run2017Cv1_v2p0', '299368-299649', '/Run2017C-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v6', Golden_JSON_2017),
+                #('Run2017Cv1_v2p0', '299368-299649', '/Run2017C-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v6', Golden_JSON_2017),
                 #####NONO ('Run2017Cv2_v2p0', '299958-300078', '/Run2017C-PromptReco-v2/AOD', '92X_dataRun2_Prompt_v7', Golden_JSON_2017),
 
-                ('Run2017Cv2_v2p1', '300079-300676', '/Run2017C-PromptReco-v2/AOD', '92X_dataRun2_Prompt_v7', Golden_JSON_2017),
-                ('Run2017Cv3_v2p1', '300742-301045', '/Run2017C-PromptReco-v3/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
+                #('Run2017Cv2_v2p1', '300079-300676', '/Run2017C-PromptReco-v2/AOD', '92X_dataRun2_Prompt_v7', Golden_JSON_2017),
+                #('Run2017Cv3_v2p1', '300742-301045', '/Run2017C-PromptReco-v3/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
 
-                ('Run2017Cv3_v2p2', '301046-302025', '/Run2017C-PromptReco-v3/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
+                #('Run2017Cv3_v2p2', '301046-302025', '/Run2017C-PromptReco-v3/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
 
-                ('Run2017Dv1_v3p0', '302026-302508', '/Run2017D-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
+                #('Run2017Dv1_v3p0', '302026-302508', '/Run2017D-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
 
-                ('Run2017Dv1_v3p1', '302509-302663', '/Run2017D-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
-                ('Run2017Ev1_v3p1', '303572-304797', '/Run2017E-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v9', Golden_JSON_2017),
-                ('Run2017Fv1_v3p1', '305040-305112', '/Run2017F-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v10', Golden_JSON_2017),
+                #('Run2017Dv1_v3p1', '302509-302663', '/Run2017D-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v8', Golden_JSON_2017),
+                #('Run2017Ev1_v3p1', '303572-304797', '/Run2017E-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v9', Golden_JSON_2017),
+                #('Run2017Fv1_v3p1', '305040-305112', '/Run2017F-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v10', Golden_JSON_2017),
 
-                ('Run2017Fv1_v3p2', '305113-305387', '/Run2017F-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v10', DSCOnly_2017),
-                ('Run2017Fv1_v4p0', '305388-306030', '/Run2017F-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v10', DSCOnly_2017),
+                #('Run2017Fv1_v3p2', '305113-305387', '/Run2017F-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v10', DSCOnly_2017),
+                #('Run2017Fv1_v4p0', '305388-306030', '/Run2017F-PromptReco-v1/AOD', '92X_dataRun2_Prompt_v10', DSCOnly_2017),
 
 
-                (     'Run2016Hv2', '281207-284035', '/Run2016H-PromptReco-v2/AOD', '80X_dataRun2_Prompt_v14', Golden_JSON_2016),
+                #('Run2016Hv2_vOld', '281207-284035', '/Run2016H-PromptReco-v2/AOD', '80X_dataRun2_Prompt_v14', Golden_JSON_2016),
 
               ]
 
@@ -91,7 +91,7 @@ config.Site.storageSite = 'T2_KR_KNU'
   if 'Data' in sys.argv:
     crab_cfg = crab_cfg.replace('job_control','''
 config.Data.splitting = 'LumiBased'
-config.Data.unitsPerJob = 80 #100
+config.Data.unitsPerJob = 70 #100
 config.Data.totalUnits = -1
 config.Data.inputDBS = 'global'
 config.Data.lumiMask = '%(json)s'

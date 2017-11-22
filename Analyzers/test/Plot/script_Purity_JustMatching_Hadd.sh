@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd /u/user/msoh/MuonHLT/RateStudy2017_v3/CMSSW_9_2_14/src/MuonHLTNtuples/Analyzers/test/Plot/outputs/Purity_JustMatching_v3/v20171122
+
+hadd Purity_JustMatching_v3_Period2_HLT_IsoMu27_v_20171122.root Purity_JustMatching_v3_Period2_v*_HLT_IsoMu27_v_20171122.root
+hadd Purity_JustMatching_v3_Period3_HLT_IsoMu27_v_20171122.root Purity_JustMatching_v3_Period3_v*_HLT_IsoMu27_v_20171122.root
+hadd Purity_JustMatching_v3_Period4_HLT_IsoMu27_v_20171122.root Purity_JustMatching_v3_Period4_v*_HLT_IsoMu27_v_20171122.root
+hadd Purity_JustMatching_v3_Period5_HLT_IsoMu27_v_20171122.root Purity_JustMatching_v3_Period5_v*_HLT_IsoMu27_v_20171122.root
+hadd Purity_JustMatching_v3_Period6_HLT_IsoMu27_v_20171122.root Purity_JustMatching_v3_Period6_v*_HLT_IsoMu27_v_20171122.root
+
+pwd
+
+echo "Finished!"
