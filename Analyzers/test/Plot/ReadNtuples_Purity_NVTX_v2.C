@@ -94,19 +94,19 @@ void ReadNtuples_Purity_NVTX_v2(TString Period, TString Menu, std::string hltnam
   TH1D *h_Mass = new TH1D("h_Mass","",10000,0,10000);
   TH1D *h_Mass_Pt[nPtBin];
   TH1D *h_Mass_Eta[nEtaBin];
-  TH1D *h_Mass_NVTX[50];
+  TH1D *h_Mass_NVTX[100];
   //TH2D *h_Mass_PtEta[nPtBin][nEtaBin];
 
   TH1D *h_Mass_OS = new TH1D("h_Mass_OS","",10000,0,10000);
   TH1D *h_Mass_OS_Pt[nPtBin];
   TH1D *h_Mass_OS_Eta[nEtaBin];
-  TH1D *h_Mass_OS_NVTX[50];
+  TH1D *h_Mass_OS_NVTX[100];
   //TH2D *h_Mass_OS_PtEta[nPtBin][nEtaBin];
 
   TH1D *h_Mass_SS = new TH1D("h_Mass_SS","",10000,0,10000);
   TH1D *h_Mass_SS_Pt[nPtBin];
   TH1D *h_Mass_SS_Eta[nEtaBin];
-  TH1D *h_Mass_SS_NVTX[50];
+  TH1D *h_Mass_SS_NVTX[100];
   //TH2D *h_Mass_SS_PtEta[nPtBin][nEtaBin];
 
   TString PtBinName = ""; TString EtaBinName = ""; TString NVTXBinName = "";
@@ -122,7 +122,7 @@ void ReadNtuples_Purity_NVTX_v2(TString Period, TString Menu, std::string hltnam
     h_Mass_OS_Eta[iEta] = new TH1D("h_Mass_OS_Eta_"+EtaBinName,"",10000,0,10000);
     h_Mass_SS_Eta[iEta] = new TH1D("h_Mass_SS_Eta_"+EtaBinName,"",10000,0,10000);
   }
-  for(Int_t iVTX=0; iVTX<50; ++iVTX) {
+  for(Int_t iVTX=0; iVTX<100; ++iVTX) {
     NVTXBinName.Form("%d-%d",iVTX,iVTX+1);
     h_Mass_NVTX[iVTX] = new TH1D("h_Mass_NVTX_"+NVTXBinName,"",10000,0,10000);
     h_Mass_OS_NVTX[iVTX] = new TH1D("h_Mass_OS_NVTX_"+NVTXBinName,"",10000,0,10000);
@@ -320,7 +320,7 @@ void ReadNtuples_Purity_NVTX_v2(TString Period, TString Menu, std::string hltnam
           h_Mass_Eta[iEta]->Fill(theMass);
         }
       }
-      for(Int_t iVTX=0; iVTX<50; ++iVTX) {
+      for(Int_t iVTX=0; iVTX<100; ++iVTX) {
         if(nVTX == iVTX) h_Mass_NVTX[iVTX]->Fill(theMass);
       }
 
@@ -336,7 +336,7 @@ void ReadNtuples_Purity_NVTX_v2(TString Period, TString Menu, std::string hltnam
             h_Mass_OS_Eta[iEta]->Fill(theMass);
           }
         }
-        for(Int_t iVTX=0; iVTX<50; ++iVTX) {
+        for(Int_t iVTX=0; iVTX<100; ++iVTX) {
           if(nVTX == iVTX) h_Mass_OS_NVTX[iVTX]->Fill(theMass);
         }
       }
@@ -353,7 +353,7 @@ void ReadNtuples_Purity_NVTX_v2(TString Period, TString Menu, std::string hltnam
             h_Mass_SS_Eta[iEta]->Fill(theMass);
           }
         }
-        for(Int_t iVTX=0; iVTX<50; ++iVTX) {
+        for(Int_t iVTX=0; iVTX<100; ++iVTX) {
           if(nVTX == iVTX) h_Mass_SS_NVTX[iVTX]->Fill(theMass);
         }
       }
@@ -387,7 +387,7 @@ void ReadNtuples_Purity_NVTX_v2(TString Period, TString Menu, std::string hltnam
     h_Mass_OS_Eta[iEta]->Write();
     h_Mass_SS_Eta[iEta]->Write();
   }
-  for(Int_t iVTX=0; iVTX<50; ++iVTX) {
+  for(Int_t iVTX=0; iVTX<100; ++iVTX) {
     h_Mass_NVTX[iVTX]   ->Sumw2();
     h_Mass_OS_NVTX[iVTX]->Sumw2();
     h_Mass_SS_NVTX[iVTX]->Sumw2();
