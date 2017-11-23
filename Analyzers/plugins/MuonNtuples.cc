@@ -393,7 +393,7 @@ void MuonNtuples::MonteCarloStudies(const edm::Event& event)
 
     GenParticleCand theGen;
     theGen.pdgId         = p.pdgId();
-    //theGen.isHardProcess = p.isHardProcess();
+    theGen.isHardProcess = p.isHardProcess();
     theGen.pt            = p.pt() ;
     theGen.eta           = p.eta();
     theGen.phi           = p.phi();

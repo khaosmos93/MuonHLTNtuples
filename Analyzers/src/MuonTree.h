@@ -12,7 +12,7 @@ class GenParticleCand {
 public:
   Int_t   pdgId;
   Int_t   status;
-  //Int_t   isHardProcess;
+  Int_t   isHardProcess;
   Float_t energy;
   Float_t pt;
   Float_t eta;
