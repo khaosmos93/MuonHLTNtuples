@@ -8,6 +8,7 @@
 //#pragma link C++ namespace ROOT;
 #pragma link C++ class MuonEvent+;
 #pragma link C++ class GenParticleCand+;
+#pragma link C++ class METCand+;
 #pragma link C++ class MuonCand+;
 #pragma link C++ class HLTMuonCand+;
 #pragma link C++ class L1MuonCand+;

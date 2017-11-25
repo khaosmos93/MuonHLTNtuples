@@ -25,16 +25,17 @@ process.load('Configuration.Geometry.GeometryRecoDB_cff')
 process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
                        offlineVtx               = cms.InputTag("offlinePrimaryVertices"),
                        offlineMuons             = cms.InputTag("muons"),
+                       offlineMET               = cms.InputTag("pfMet"),
 
                        triggerResult            = cms.untracked.InputTag("TriggerResults::HLT"),
                        triggerSummary           = cms.untracked.InputTag("hltTriggerSummaryAOD::HLT"),
                        tagTriggerResult         = cms.untracked.InputTag("TriggerResults::HLT"),
                        tagTriggerSummary        = cms.untracked.InputTag("hltTriggerSummaryAOD::HLT"),
 
-                       L3Candidates             = cms.untracked.InputTag("hltL3MuonCandidates"),
+                       L3Candidates             = cms.untracked.InputTag("hltIterL3MuonCandidates"),
                        L2Candidates             = cms.untracked.InputTag("hltL2MuonCandidates"),
                        L1Candidates             = cms.untracked.InputTag("gmtStage2Digis", "Muon", "RECO"), #if HLT non re-run
-                       #L1Candidates             = cms.untracked.InputTag("hltGmtStage2Digis", "Muon"), # if re-run HLT and L1 emulator
+                       #L1Candidates             = cms.untracked.InputTag("hltGtStage2Digis", "Muon"), # if re-run HLT and L1 emulator
                        TkMuCandidates           = cms.untracked.InputTag("hltHighPtTkMuonCands"),
                        NeutralDeposit           = cms.untracked.InputTag("hltMuonHcalPFClusterIsoForMuons"),
                        PhotonsDeposit           = cms.untracked.InputTag("hltMuonEcalPFClusterIsoForMuons"),
@@ -54,6 +55,7 @@ process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
 
                        lumiScalerTag            = cms.untracked.InputTag("scalersRawToDigi"),
                        puInfoTag                = cms.untracked.InputTag("addPileupInfo"),
+                       GenInfoTag               = cms.untracked.InputTag("generator"),
 
                        genParticlesTag          = cms.untracked.InputTag("genParticles"),
                        doOffline                = cms.untracked.bool(True)

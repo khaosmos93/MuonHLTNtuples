@@ -1,4 +1,4 @@
-# hltGetConfiguration orcoff:/cdaq/physics/Run2017/2e34/v4.0.0/HLT/V1 --path HLTriggerFirstPath,HLT_IsoMu27_v*,HLT_Mu50_v*,HLT_OldMu100_v*,HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v*,HLTriggerFinalPath,HLTAnalyzerEndpath --input file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/FIXME/AOD/FIXME --parent file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/FIXME/RAW/FIXME --full --offline --mc --unprescale --process MSHLT --globaltag 92X_upgrade2017_realistic_v12 --output none --max-events 1000
+# hltGetConfiguration orcoff:/cdaq/physics/Run2017/2e34/v4.0.0/HLT/V1 --path HLTriggerFirstPath,HLT_IsoMu27_v*,HLT_Mu50_v*,HLT_OldMu100_v*,HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v*,HLTriggerFinalPath --input file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/QCD/AOD/AE25C0B6-CF9C-E711-92A5-0CC47A4D76AC.root --parent file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/QCD/RAW/00713BAB-779C-E711-BE71-0CC47A4C8ECE.root --full --offline --mc --unprescale --process MSHLT --globaltag 92X_upgrade2017_realistic_v10 --output full --max-events -1
 
 # /cdaq/physics/Run2017/2e34/v4.0.0/HLT/V1 (CMSSW_9_2_10)
 
@@ -10971,29 +10971,28 @@ process.HLTriggerFinalPath = cms.Path( process.hltGtStage2Digis + process.hltSca
 
 process.HLTSchedule = cms.Schedule( *(process.HLTriggerFirstPath, process.HLT_IsoMu27_v13, process.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8_v3, process.HLT_Mu50_v11, process.HLT_OldMu100_v3, process.HLTriggerFinalPath ))
 
-PROCESS = "MSHLT"
+"""
 process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
                        offlineVtx               = cms.InputTag("offlinePrimaryVertices"),
                        offlineMuons             = cms.InputTag("muons"),
-                       offlineMET               = cms.InputTag("pfMet"),
 
-                       triggerResult            = cms.untracked.InputTag("TriggerResults::"+PROCESS),
-                       triggerSummary           = cms.untracked.InputTag("hltTriggerSummaryAOD::"+PROCESS),
-                       tagTriggerResult         = cms.untracked.InputTag("TriggerResults::"+PROCESS),
-                       tagTriggerSummary        = cms.untracked.InputTag("hltTriggerSummaryAOD::"+PROCESS),
+                       triggerResult            = cms.untracked.InputTag("TriggerResults", "", "MSHLT"),
+                       triggerSummary           = cms.untracked.InputTag("hltTriggerSummaryAOD", "", "MSHLT"),
+                       tagTriggerResult         = cms.untracked.InputTag("TriggerResults", "", "MSHLT"),
+                       tagTriggerSummary        = cms.untracked.InputTag("hltTriggerSummaryAOD", "", "MSHLT"),
 
-                       L3Candidates             = cms.untracked.InputTag("hltIterL3MuonCandidates"),
+                       L3Candidates             = cms.untracked.InputTag("hltIterL3MuonCandidates"),    #("hltL3MuonCandidates"),
                        L2Candidates             = cms.untracked.InputTag("hltL2MuonCandidates"),
                        #L1Candidates             = cms.untracked.InputTag("gmtStage2Digis", "Muon", "RECO"), #if HLT non re-run
                        L1Candidates             = cms.untracked.InputTag("hltGtStage2Digis", "Muon"), # if re-run HLT and L1 emulator
-                       TkMuCandidates           = cms.untracked.InputTag("hltHighPtTkMuonCands"),
+                       TkMuCandidates           = cms.untracked.InputTag(""),   #hltHighPtTkMuonCands
                        NeutralDeposit           = cms.untracked.InputTag("hltMuonHcalPFClusterIsoForMuons"),
                        PhotonsDeposit           = cms.untracked.InputTag("hltMuonEcalPFClusterIsoForMuons"),
                        NeutralDeposit05         = cms.untracked.InputTag("hltMuonHcalPFClusterIsoForMuonsNoEffAreaVeto0p05"),
                        PhotonsDeposit05         = cms.untracked.InputTag("hltMuonEcalPFClusterIsoForMuonsNoEffAreaVeto0p05"),
                        NeutralDeposit1          = cms.untracked.InputTag("hltMuonHcalPFClusterIsoForMuonsNoEffAreaVeto0p1"),
                        PhotonsDeposit1          = cms.untracked.InputTag("hltMuonEcalPFClusterIsoForMuonsNoEffAreaVeto0p1"),
-                       ChargedDeposit           = cms.untracked.InputTag("hltMuonTkRelIsolationCut0p09Map", "trkIsoDeposits", PROCESS),
+                       ChargedDeposit           = cms.untracked.InputTag("hltMuonTkRelIsolationCut0p09Map", "trkIsoDeposits", "HLT"),
 
                        RhoCorrectionOnline      = cms.untracked.InputTag("hltFixedGridRhoFastjetAllCaloForMuons"), # for now, same for tag and probe muons
                        RhoCorrectionOffline     = cms.untracked.InputTag("fixedGridRhoFastjetAllCalo"),
@@ -11005,41 +11004,63 @@ process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
 
                        lumiScalerTag            = cms.untracked.InputTag("scalersRawToDigi"),
                        puInfoTag                = cms.untracked.InputTag("addPileupInfo"),
-                       GenInfoTag               = cms.untracked.InputTag("generator"),
 
                        genParticlesTag          = cms.untracked.InputTag("genParticles"),
                        doOffline                = cms.untracked.bool(True)
                        )
 
-process.mypath  = cms.EndPath(process.muonNtuples)
+process.mypath  = cms.Path(process.muonNtuples)
 
-outputName = "muonNtuple_ttbar_P6_v4p0.root"
 process.TFileService = cms.Service("TFileService",
-                                   fileName = cms.string(outputName),
+                                   fileName = cms.string("muonNtuple_MC_v4p0.root"),
                                    closeFileFast = cms.untracked.bool(False)
                                    )
+"""
+
+"""
+W : lumi[377, 378]
+
+Z : lumi[23732, 23732]
+
+ttbar : lumi[4615, 4616]
+
+"""
 
 process.source = cms.Source( "PoolSource",
     fileNames = cms.untracked.vstring(
-        '',
+        'file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/QCD/AOD/AE25C0B6-CF9C-E711-92A5-0CC47A4D76AC.root',
     ),
     secondaryFileNames = cms.untracked.vstring(
-        '',
+        'file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/QCD/RAW/00713BAB-779C-E711-BE71-0CC47A4C8ECE.root',
     ),
+    lumisToProcess = cms.untracked.VLuminosityBlockRange('1:1169-1:1170'),
     inputCommands = cms.untracked.vstring(
         'keep *'
     )
 )
 
+# add a single "keep *" output
+process.hltOutputFULL = cms.OutputModule( "PoolOutputModule",
+    fileName = cms.untracked.string( "outputFULL_v4p0.root" ),
+    fastCloning = cms.untracked.bool( False ),
+    dataset = cms.untracked.PSet(
+        dataTier = cms.untracked.string( 'RECO' ),
+        filterName = cms.untracked.string( '' )
+    ),
+    outputCommands = cms.untracked.vstring( 'keep *' )
+)
+process.FULLOutput = cms.EndPath( process.hltOutputFULL )
+
 # limit the number of events to be processed
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32( 1000 )
+    input = cms.untracked.int32( -1 )
 )
 
 # enable TrigReport, TimeReport and MultiThreading
 process.options = cms.untracked.PSet(
     wantSummary = cms.untracked.bool( True ),
-    numberOfThreads = cms.untracked.uint32( 8 ),
+    SkipEvent = cms.untracked.vstring('ProductNotFound'),
+    numberOfThreads = cms.untracked.uint32( 4 ),
     numberOfStreams = cms.untracked.uint32( 0 ),
     sizeOfStackForThreadsInKB = cms.untracked.uint32( 10*1024 )
 )
@@ -11047,7 +11068,7 @@ process.options = cms.untracked.PSet(
 # override the GlobalTag, connection string and pfnPrefix
 if 'GlobalTag' in process.__dict__:
     from Configuration.AlCa.GlobalTag import GlobalTag as customiseGlobalTag
-    process.GlobalTag = customiseGlobalTag(process.GlobalTag, globaltag = '92X_upgrade2017_realistic_v12')
+    process.GlobalTag = customiseGlobalTag(process.GlobalTag, globaltag = '92X_upgrade2017_realistic_v10')
 
 if 'MessageLogger' in process.__dict__:
     process.MessageLogger.categories.append('TriggerSummaryProducerAOD')
@@ -11063,6 +11084,7 @@ process.DQMStore.enableMultiThread = True
 #process.dqmOutput = cms.OutputModule("DQMRootOutputModule",
 #    fileName = cms.untracked.string("DQMIO.root")
 #)
+
 #process.DQMOutput = cms.EndPath( process.dqmOutput )
 
 # add specific customizations
@@ -11075,8 +11097,8 @@ _customInfo['inputFiles']={}
 _customInfo['inputFiles'][True]  = "file:RelVal_Raw_GRun_DATA.root"
 _customInfo['inputFiles'][False] = "file:RelVal_Raw_GRun_MC.root"
 _customInfo['maxEvents' ]=  -1
-_customInfo['globalTag' ]= "92X_upgrade2017_realistic_v12"
-_customInfo['inputFile' ]=  ['']
+_customInfo['globalTag' ]= "92X_upgrade2017_realistic_v10"
+_customInfo['inputFile' ]=  ['file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/QCD/AOD/AE25C0B6-CF9C-E711-92A5-0CC47A4D76AC.root']
 _customInfo['realData'  ]=  False
 from HLTrigger.Configuration.customizeHLTforALL import customizeHLTforAll
 process = customizeHLTforAll(process,"GRun",_customInfo)

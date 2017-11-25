@@ -36,6 +36,12 @@
 #include "HLTrigger/HLTcore/interface/HLTConfigProvider.h"
 #include "HLTrigger/HLTcore/interface/HLTEventAnalyzerAOD.h"
 #include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
+#include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
+
+#include "DataFormats/PatCandidates/interface/MET.h"
+#include "DataFormats/METReco/interface/PFMETFwd.h"
+#include "DataFormats/METReco/interface/PFMET.h"
+#include "DataFormats/METReco/interface/PFMETCollection.h"
 
 
 #include <map>
@@ -95,6 +101,10 @@ class MuonNtuples : public edm::EDAnalyzer {
   /// file service
   edm::Service<TFileService> outfile_;
 
+  // MET
+  edm::InputTag offlineMETTag_;
+  edm::EDGetTokenT<vector<reco::PFMET>> offlineMETToken_;
+
   // Trigger process
   edm::InputTag triggerResultTag_;
   edm::EDGetTokenT<edm::TriggerResults>   triggerResultToken_;
@@ -149,6 +159,8 @@ class MuonNtuples : public edm::EDAnalyzer {
 
   edm::InputTag puTag_;
   edm::EDGetTokenT<std::vector< PileupSummaryInfo>> puToken_;
+  edm::InputTag GenInfoTag_;
+  edm::EDGetTokenT<GenEventInfoProduct> GenInfoToken_;
 
   edm::InputTag genTag_;
   edm::EDGetTokenT<reco::GenParticleCollection> genToken_;
@@ -169,6 +181,9 @@ MuonNtuples::MuonNtuples(const edm::ParameterSet& cfg):
     offlinePVToken_         (consumes<reco::VertexCollection>(offlinePVTag_)),
   offlineMuonTag_         (cfg.getParameter<edm::InputTag>("offlineMuons")),
     offlineMuonToken_       (consumes<std::vector<reco::Muon>>(offlineMuonTag_)),
+
+  offlineMETTag_                 (cfg.getParameter<edm::InputTag>("offlineMET")),
+    offlineMETToken_               (consumes<std::vector<reco::PFMET>>(offlineMETTag_)),
 
   triggerResultTag_       (cfg.getUntrackedParameter<edm::InputTag>("triggerResult")),
     triggerResultToken_     (consumes<edm::TriggerResults>(triggerResultTag_)),
@@ -223,6 +238,9 @@ MuonNtuples::MuonNtuples(const edm::ParameterSet& cfg):
   puTag_                  (cfg.getUntrackedParameter<edm::InputTag>("puInfoTag")),
     puToken_                (consumes<std::vector< PileupSummaryInfo>>(puTag_)),
 
+  GenInfoTag_                  (cfg.getUntrackedParameter<edm::InputTag>("GenInfoTag")),
+    GenInfoToken_                (consumes<GenEventInfoProduct>(GenInfoTag_)),
+
   genTag_                 (cfg.getUntrackedParameter<edm::InputTag>("genParticlesTag")),
     genToken_               (consumes<reco::GenParticleCollection>(genTag_)),
 
@@ -265,7 +283,6 @@ void MuonNtuples::analyze (const edm::Event &event, const edm::EventSetup &event
     event_.nVtx = nGoodVtx;
     const reco::Vertex           & pv      = vertices->at(0);
 
-
     // Fill offline rho info
     edm::Handle <double>  rhoCollectionOffline;
     event.getByToken(rhoCorrectionOfflineToken_, rhoCollectionOffline);
@@ -289,11 +306,26 @@ void MuonNtuples::analyze (const edm::Event &event, const edm::EventSetup &event
           event_.instLumi = lumiScaler->begin()->instantLumi();
       }
     }
+
+    // MET
+    edm::Handle<std::vector<reco::PFMET>> METs;
+    event.getByToken(offlineMETToken_, METs);
+
+    event_.MET.pt  = METs->front().pt();
+    event_.MET.phi = METs->front().phi();
+    event_.MET.px  = METs->front().px();
+    event_.MET.py  = METs->front().py();
+
   }
 
 
-  // Fill PU info
+  // Fill Gen Weight, PU info
   if (!event.isRealData()) {
+
+    edm::Handle<GenEventInfoProduct> GenInfo;
+    event.getByToken(GenInfoToken_, GenInfo);
+    event_.GenWeight = GenInfo->weight();
+
     edm::Handle<std::vector< PileupSummaryInfo > > puInfo;
     if ( event.getByToken(puToken_,puInfo)){
       std::vector<PileupSummaryInfo>::const_iterator PVI;
@@ -343,7 +375,7 @@ void MuonNtuples::analyze (const edm::Event &event, const edm::EventSetup &event
 
 
 
- // Handle the online muon collection and fill online muons
+ /*// Handle the online muon collection and fill online muons
   edm::Handle<reco::RecoChargedCandidateCollection> l3cands;
   if (event.getByToken(l3candToken_, l3cands))
     fillHltMuons(l3cands, event, true, false);
@@ -369,7 +401,7 @@ void MuonNtuples::analyze (const edm::Event &event, const edm::EventSetup &event
   if (event.getByToken(tkMucandToken_, tkMucands))
     fillHltMuons(tkMucands, event, false, true);
   else
-    edm::LogWarning("") << "Online tracker muon collection not found !!!";
+    edm::LogWarning("") << "Online tracker muon collection not found !!!";*/
 
 
   // endEvent();
@@ -715,6 +747,11 @@ void MuonNtuples::beginEvent()
   event_.hltTag.objects.clear();
   event_.hltTag.rho = -1;
 
+  event_.MET.pt   = -999;
+  event_.MET.phi  = -999;
+  event_.MET.px   = -999;
+  event_.MET.py   = -999;
+
   event_.genParticles.clear();
   event_.muons.clear();
   event_.hltmuons.clear();
@@ -730,6 +767,7 @@ void MuonNtuples::beginEvent()
   }
   event_.nVtx       = -1;
   event_.trueNI     = -1;
+  event_.GenWeight  =  0;
   event_.rho        = -1;
   event_.bxId       = -1;
   event_.instLumi   = -1;

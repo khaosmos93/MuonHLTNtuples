@@ -4,7 +4,9 @@ process = cms.Process("NTUPLE")
 
 process.source = cms.Source("PoolSource",
                     fileNames = cms.untracked.vstring(
-                    'file:outputFULL_v4p0.root',
+                    #'file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/Z/AOD/E05773F6-56CD-E711-A6AA-002590D9D822.root',  #Z
+                    #'file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/W/AOD/B09BB770-649D-E711-A46E-0CC47AD98BC2.root',  #W
+                    'file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/304671_674/AOD/AEF86800-7FAF-E711-B173-02163E019DE8.root',
                     ),
                     secondaryFileNames = cms.untracked.vstring(),
 #                     lumisToProcess = cms.untracked.VLuminosityBlockRange('258158:1-258158:1786'),
@@ -12,7 +14,7 @@ process.source = cms.Source("PoolSource",
 )
 
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_condDBv2_cff")
-GT = '92X_upgrade2017_realistic_v10'
+GT = '92X_upgrade2017_realistic_v12'
 process.GlobalTag.globaltag = GT
 
 process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff")
@@ -25,11 +27,12 @@ process.load('Configuration.Geometry.GeometryRecoDB_cff')
 process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
                        offlineVtx               = cms.InputTag("offlinePrimaryVertices"),
                        offlineMuons             = cms.InputTag("muons"),
+                       offlineMET               = cms.InputTag("pfMet"),
 
-                       triggerResult            = cms.untracked.InputTag("TriggerResults::MSHLT"),
-                       triggerSummary           = cms.untracked.InputTag("hltTriggerSummaryAOD::MSHLT"),
-                       tagTriggerResult         = cms.untracked.InputTag("TriggerResults::MSHLT"),
-                       tagTriggerSummary        = cms.untracked.InputTag("hltTriggerSummaryAOD::MSHLT"),
+                       triggerResult            = cms.untracked.InputTag("TriggerResults::HLT"),
+                       triggerSummary           = cms.untracked.InputTag("hltTriggerSummaryAOD::HLT"),
+                       tagTriggerResult         = cms.untracked.InputTag("TriggerResults::HLT"),
+                       tagTriggerSummary        = cms.untracked.InputTag("hltTriggerSummaryAOD::HLT"),
 
                        L3Candidates             = cms.untracked.InputTag("hltL3MuonCandidates"),
                        L2Candidates             = cms.untracked.InputTag("hltL2MuonCandidates"),
@@ -54,6 +57,7 @@ process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
 
                        lumiScalerTag            = cms.untracked.InputTag("scalersRawToDigi"),
                        puInfoTag                = cms.untracked.InputTag("addPileupInfo"),
+                       GenInfoTag               = cms.untracked.InputTag("generator"),
 
                        genParticlesTag          = cms.untracked.InputTag("genParticles"),
                        doOffline                = cms.untracked.bool(True)
@@ -67,7 +71,7 @@ process.TFileService = cms.Service("TFileService",
                                    )
 
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(-1))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000))
 
 
 process.MessageLogger = cms.Service("MessageLogger",

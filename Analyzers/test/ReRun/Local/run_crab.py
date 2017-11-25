@@ -11021,11 +11021,12 @@ process.TFileService = cms.Service("TFileService",
 
 process.source = cms.Source( "PoolSource",
     fileNames = cms.untracked.vstring(
-        '',
+        'file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/W/AOD/B09BB770-649D-E711-A46E-0CC47AD98BC2.root',
     ),
     secondaryFileNames = cms.untracked.vstring(
-        '',
+        'file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/W/RAW/00284BFB-D89C-E711-9316-0CC47AD98C86.root',
     ),
+    lumisToProcess = cms.untracked.VLuminosityBlockRange('1:377-1:378'), #W
     inputCommands = cms.untracked.vstring(
         'keep *'
     )
@@ -11074,9 +11075,9 @@ _customInfo['globalTags'][False] = "auto:run2_mc_GRun"
 _customInfo['inputFiles']={}
 _customInfo['inputFiles'][True]  = "file:RelVal_Raw_GRun_DATA.root"
 _customInfo['inputFiles'][False] = "file:RelVal_Raw_GRun_MC.root"
-_customInfo['maxEvents' ]=  -1
+_customInfo['maxEvents' ]=  1000
 _customInfo['globalTag' ]= "92X_upgrade2017_realistic_v12"
-_customInfo['inputFile' ]=  ['']
+_customInfo['inputFile' ]=  ['file:/u/user/msoh/MuonHLT/RateStudy2017_v3/TestSample/W/AOD/B09BB770-649D-E711-A46E-0CC47AD98BC2.root']
 _customInfo['realData'  ]=  False
 from HLTrigger.Configuration.customizeHLTforALL import customizeHLTforAll
 process = customizeHLTforAll(process,"GRun",_customInfo)

@@ -11013,7 +11013,7 @@ process.muonNtuples =cms.EDAnalyzer("MuonNtuples",
 
 process.mypath  = cms.EndPath(process.muonNtuples)
 
-outputName = "muonNtuple_ttbar_P6_v4p0.root"
+outputName = "OutputReplace"
 process.TFileService = cms.Service("TFileService",
                                    fileName = cms.string(outputName),
                                    closeFileFast = cms.untracked.bool(False)

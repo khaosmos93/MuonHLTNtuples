@@ -5,8 +5,8 @@ config = Configuration()
 config.section_('General')
 config.General.transferOutputs = True
 config.General.transferLogs = False
-config.General.workArea = 'crab_RateStudy2017_v3_SingleMuon_20171117'
-config.General.requestName = 'RateStudy2017_v3_SingleMuon_Run2017Bv1_v1p2_20171117'
+config.General.workArea = 'crab_PurityStudy2017_v1_20171124'
+config.General.requestName = 'PurityStudy2017_v1_ttbar_P6_v4p0_20171124'
 
 config.section_('JobType')
 config.JobType.psetName = 'run_crab.py'
@@ -17,16 +17,17 @@ config.JobType.maxMemoryMB = 2500
 config.JobType.maxJobRuntimeMin = 2500
 
 config.section_('Data')
-config.Data.outLFNDirBase = '/store/user/moh/RateStudy2017_v3/v20171117/'
-config.Data.inputDataset = '/SingleMuon/Run2017B-PromptReco-v1/AOD'
+config.Data.outLFNDirBase = '/store/user/moh/PurityStudy2017_v1/v20171124/'
+config.Data.inputDataset = '/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/RunIISummer17DRStdmix-NZSFlatPU28to62_92X_upgrade2017_realistic_v10-v2/AODSIM'
 config.Data.publication = False
 
-config.Data.splitting = 'LumiBased'
-config.Data.unitsPerJob = 70 #100
-config.Data.totalUnits = -1
+config.Data.useParent = True
+config.Data.splitting = 'EventAwareLumiBased'
+#config.Data.splitting = 'FileBased'
+config.Data.totalUnits = 500000
+config.Data.unitsPerJob  = 5000
 config.Data.inputDBS = 'global'
-config.Data.lumiMask = 'https://cms-service-dqm.web.cern.ch/cms-service-dqm/CAF/certification/Collisions17/13TeV/PromptReco/Cert_294927-305364_13TeV_PromptReco_Collisions17_JSON.txt'
-config.Data.runRange = '297557-298677'
+config.Data.allowNonValidInputDataset = True
 
 config.section_('User')
 

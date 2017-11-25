@@ -28,6 +28,21 @@ public:
 
 
 
+class METCand {
+public:
+  Double_t   pt;
+  Double_t   phi;
+  Double_t   px;
+  Double_t   py;
+
+  METCand(){};
+  virtual ~METCand(){};
+
+  ClassDef(METCand,1)
+};
+
+
+
 
 class MuonCand {
 public:
@@ -166,6 +181,7 @@ public:
   Int_t   runNumber;
   Int_t   luminosityBlockNumber;
   unsigned long long   eventNumber;
+  double GenWeight;
 
   Int_t   nVtx;
   Float_t primaryVertex[3];
@@ -176,6 +192,8 @@ public:
 
   Float_t bxId;
   Float_t instLumi;
+
+  METCand MET;
 
   std::vector <GenParticleCand> genParticles;
   std::vector <MuonCand>        muons;
